@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>눈먼돈 찾기 시스템</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>💸 눈먼돈 찾기 시스템</h1>
+        <form method="post">
+            <input type="text" name="keyword" placeholder="사업명을 입력하세요" value="{{ keyword }}">
+            <select name="target">
+                <option value="">-- 지원대상 전체 --</option>
+                {% for t in targets %}
+                    <option value="{{ t }}" {% if t == target %}selected{% endif %}>{{ t }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">검색</button>
+        </form>
+
+        <h2>🔍 검색 결과:</h2>
+        {% if results %}
+            <ul>
+                {% for row in results %}
+                    <li>
+                        <a href="{{ url_for('detail', item_id=row['id']) }}">
+                            {{ row["사업명"] }} - {{ row["지원대상"] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>⚠️ 검색 결과가 없습니다.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

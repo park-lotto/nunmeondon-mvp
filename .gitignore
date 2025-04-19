@@ -1,0 +1,12 @@
+# 무시할 폴더
+node_modules/
+.vscode/
+__pycache__/
+*.pyc
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 데이터베이스 백업 제외 (선택)
+*.db

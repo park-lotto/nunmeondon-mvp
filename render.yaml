@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: nunmoney
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn 눈먼돈_MVP_DB버전_app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
