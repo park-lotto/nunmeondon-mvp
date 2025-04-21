@@ -52,15 +52,15 @@
     </form>
   </div>
 
-  {% if rows %}
+  {% if results %}
   <div class="section">
     <h2>🔎 검색 결과:</h2>
-    {% for row in rows %}
+    {% for row in results %}
       <div class="result">
-        <div class="result-title">{{ row[1] }}</div>
+        <div class="result-title">{{ row["사업명"] }}</div>
         <div class="result-desc">
-          🧍 대상: {{ row[2] }}<br>
-          💡 {{ row[3] }}
+          🧍 대상: {{ row["지원대상"] }}<br>
+          💡 이 정책에 대한 요약 설명은 여기에 들어갑니다.
         </div>
         <div class="btn-row">
           <button class="primary">신청하러 가기</button>
@@ -70,6 +70,8 @@
       </div>
     {% endfor %}
   </div>
+  {% else %}
+    <p>🔎 아직 검색 결과가 없습니다. 조건을 선택하거나 키워드를 입력해보세요.</p>
   {% endif %}
 
 </body>
