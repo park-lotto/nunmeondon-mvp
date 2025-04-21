@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>사업 상세 정보</title>
+  <meta charset="UTF-8">
+  <title>{{ row["사업명"] }} - 상세 정보</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 24px;
+      max-width: 720px;
+      margin: auto;
+      background-color: #f7f7f7;
+    }
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .back {
+      margin-top: 24px;
+      display: inline-block;
+      font-size: 14px;
+      text-decoration: none;
+      color: #007aff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📌 사업 상세 정보</h1>
-        <p><strong>사업명:</strong> {{ row["사업명"] }}</p>
-        <p><strong>지원대상:</strong> {{ row["지원대상"] }}</p>
-        <a href="{{ url_for('index') }}">← 돌아가기</a>
-    </div>
+
+  <div class="card">
+    <h1>{{ row["사업명"] }}</h1>
+    <p><strong>지원대상:</strong> {{ row["지원대상"] }}</p>
+    <p><strong>정책 설명:</strong> 여기에 실제 혜택 내용, 지원 금액, 신청 조건 등을 표시할 수 있습니다.</p>
+  </div>
+
+  <a class="back" href="/">← 돌아가기</a>
+
 </body>
 </html>
