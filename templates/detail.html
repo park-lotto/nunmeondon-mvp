@@ -26,8 +26,30 @@
       font-size: 16px;
       margin-bottom: 10px;
     }
+    .btn-row {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-align: center;
+      border: 1px solid #999;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: black;
+      color: white;
+      border: none;
+    }
     .back {
-      margin-top: 24px;
+      margin-top: 30px;
       display: inline-block;
       font-size: 14px;
       text-decoration: none;
@@ -41,6 +63,12 @@
     <h1>{{ row["사업명"] }}</h1>
     <p><strong>지원대상:</strong> {{ row["지원대상"] }}</p>
     <p><strong>정책 설명:</strong> 여기에 실제 혜택 내용, 지원 금액, 신청 조건 등을 표시할 수 있습니다.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#">신청하러 가기</a>
+      <a class="btn" href="#">카톡으로 저장</a>
+      <a class="btn" href="/pdf/{{ row['id'] }}">📄 PDF로 저장</a>
+    </div>
   </div>
 
   <a class="back" href="/">← 목록으로 돌아가기</a>
