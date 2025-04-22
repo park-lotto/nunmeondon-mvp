@@ -18,6 +18,7 @@ def index():
     region = request.form.get("region", "").strip() if request.method == "POST" else ""
 
     targets = get_targets()
+     results = []
 
     query = "SELECT rowid, * FROM support WHERE 1=1"
     params = []
