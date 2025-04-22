@@ -66,12 +66,22 @@
 
     <div class="btn-row">
       <a class="btn btn-primary" href="#">신청하러 가기</a>
-      <a class="btn" href="#">카톡으로 저장</a>
+      <a class="btn" href="#" onclick="copyLink()">📤 공유 링크 복사</a>
       <a class="btn" href="/pdf/{{ row['id'] }}">📄 PDF로 저장</a>
     </div>
   </div>
 
   <a class="back" href="/">← 목록으로 돌아가기</a>
+<script>
+  function copyLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(function() {
+      alert("📎 링크가 복사되었습니다:\n" + url);
+    }, function(err) {
+      alert("❌ 복사 실패: " + err);
+    });
+  }
+</script>
 
 </body>
 </html>
