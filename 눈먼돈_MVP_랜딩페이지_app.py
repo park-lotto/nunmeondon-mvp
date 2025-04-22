@@ -15,6 +15,8 @@ def get_targets():
 def index():
     keyword = request.form.get("keyword", "").strip() if request.method == "POST" else ""
     target = request.form.get("target", "").strip() if request.method == "POST" else ""
+    region = request.form.get("region", "").strip() if request.method == "POST" else ""
+
     targets = get_targets()
 
     query = "SELECT rowid, * FROM support WHERE 1=1"
@@ -35,7 +37,7 @@ def index():
 
     results = [{"id": r[0], "사업명": r[1], "지원대상": r[2]} for r in rows]
 
-    return render_template("index.html", results=results, keyword=keyword, target=target, targets=targets)
+    return render_template("index.html", results=results, keyword=keyword, target=target, targets=targets, region=region)
 
 @app.route("/detail/<int:item_id>")
 def detail(item_id):
