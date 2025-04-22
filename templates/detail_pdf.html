@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ row["사업명"] }} - PDF</title>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; padding: 20px; font-size: 15px; }
+    h1 { font-size: 20px; margin-bottom: 10px; }
+    p { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <h1>{{ row["사업명"] }}</h1>
+  <p><strong>지원대상:</strong> {{ row["지원대상"] }}</p>
+  <p><strong>정책 설명:</strong> 이 항목은 PDF용 설명을 넣어주셔도 됩니다.</p>
+
+</body>
+</html>
