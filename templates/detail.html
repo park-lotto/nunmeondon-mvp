@@ -65,13 +65,13 @@
     <p><strong>정책 설명:</strong> 여기에 실제 혜택 내용, 지원 금액, 신청 조건 등을 표시할 수 있습니다.</p>
 
     <div class="btn-row">
-      <a class="btn btn-primary" href="#">신청하러 가기</a>
+      <a class="btn btn-primary" href="#" onclick="alert('📝 신청 페이지는 준비 중입니다.\n곧 연결될 예정입니다.'); return false;">
+        신청하러 가기
+      </a>
       <a class="btn" href="#" onclick="copyLink()">📤 공유 링크 복사</a>
-      {% if row.get('id') %}
-        <a class="btn" href="/pdf/{{ row['id'] }}">📄 PDF로 저장</a>
-      {% else %}
-        <span class="btn disabled">PDF 준비중</span>
-      {% endif %}
+      <a class="btn" href="#" onclick="alert('⚠️ PDF 저장 기능은 현재 제공되지 않습니다.\n공유 또는 신청 버튼을 이용해주세요.'); return false;">
+        📄 PDF로 저장
+      </a>
     </div>
   </div>
 
