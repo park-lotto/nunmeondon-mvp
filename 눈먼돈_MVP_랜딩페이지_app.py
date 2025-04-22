@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import sqlite3
+import pdfkit
 
 app = Flask(__name__)
 
@@ -46,15 +47,9 @@ def detail(item_id):
     conn.close()
 
     if row:
-        return render_template("detail.html", row={"사업명": row[0], "지원대상": row[1]})
+        return render_template("detail.html", row={"사업명": row[0], "지원대상": row[1], "id": item_id})
     else:
         return "❌ 상세 정보를 찾을 수 없습니다.", 404
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-import pdfkit
-from flask import make_response
 
 @app.route("/pdf/<int:item_id>")
 def download_pdf(item_id):
@@ -76,3 +71,6 @@ def download_pdf(item_id):
     else:
         return "❌ PDF 변환 대상이 없습니다.", 404
 
+# ✅ 맨 마지막에 실행
+if __name__ == "__main__":
+    app.run(debug=True)
