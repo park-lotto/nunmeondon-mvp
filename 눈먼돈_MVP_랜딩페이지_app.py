@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, make_response
 import sqlite3
-import pdfkit
+from weasyprint import HTML
 
 app = Flask(__name__)
 
@@ -47,9 +47,37 @@ def detail(item_id):
     conn.close()
 
     if row:
-        return render_template("detail.html", row={"id": item_id, "사업명": row[0], "지원대상": row[1]})
+        return render_template("detail.html", row={
+            "id": item_id,
+            "사업명": row[0],
+            "지원대상": row[1]
+        })
     else:
         return "❌ 상세 정보를 찾을 수 없습니다.", 404
 
 @app.route("/pdf/<int:item_id>")
 def download_pdf(item_id):
+    conn = sqlite3.connect("data/data.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM support WHERE rowid = ?", (item_id,))
+    row = cur.fetchone()
+    conn.close()
+
+    if row:
+        row_data = {
+            "id": item_id,
+            "사업명": row[0],
+            "지원대상": row[1]
+        }
+        rendered = render_template("detail_pdf.html", row=row_data)
+        pdf = HTML(string=rendered).write_pdf()
+
+        response = make_response(pdf)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] = f'attachment; filename={row[0]}_정책.pdf'
+        return response
+    else:
+        return "❌ PDF 변환 대상이 없습니다.", 404
+
+if __name__ == "__main__":
+    app.run(debug=True)
