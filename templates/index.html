@@ -51,6 +51,8 @@
       background: white;
       color: #444;
       padding: 9px 14px;
+      text-decoration: none;
+      display: inline-block;
     }
     .result {
       background: #e3f2ff;
@@ -90,7 +92,6 @@
   <h2>🧭 어떤 방식으로 지원금을 찾으시겠어요?</h2>
 
   <form method="POST">
-
     <div class="box">
       <h3>① 내 조건에 맞게 추천받기</h3>
       <p>청년, 소상공인, 경력단절 등 내 조건만 선택하면 자동 추천!</p>
@@ -100,6 +101,15 @@
         {% for t in targets %}
           <option value="{{ t }}" {% if t == target %}selected{% endif %}>{{ t }}</option>
         {% endfor %}
+      </select>
+
+      <label for="region">🏩 지역 선택:</label>
+      <select name="region" id="region">
+        <option value="">-- 전체 지역 --</option>
+        <option value="서울" {% if region == '서울' %}selected{% endif %}>서울</option>
+        <option value="경기" {% if region == '경기' %}selected{% endif %}>경기</option>
+        <option value="부산" {% if region == '부산' %}selected{% endif %}>부산</option>
+        <option value="전국" {% if region == '전국' %}selected{% endif %}>전국</option>
       </select>
     </div>
 
@@ -112,7 +122,6 @@
     <div style="text-align: center; margin-top: 12px;">
       <button class="primary" type="submit">추천 지원금 보기 🔍</button>
     </div>
-
   </form>
 
   {% if results %}
@@ -122,13 +131,13 @@
         <div class="result">
           <div class="result-title">{{ row["사업명"] }}</div>
           <div class="result-desc">
-            🧍 대상: {{ row["지원대상"] }}<br>
+            🧟 대상: {{ row["지원대상"] }}<br>
             💡 이 정책에 대한 요약 설명은 여기에 들어갑니다.
           </div>
           <div class="btn-row">
-            <a class="primary" href="/detail/{{ row['id'] }}">신청하러 가기</a>
-            <button class="secondary">카톡으로 저장</button>
-            <button class="secondary">📄 PDF로 받기</button>
+            <a class="secondary" href="/detail/{{ row['id'] }}">신청하러 가기</a>
+            <a class="primary" href="/detail/{{ row['id'] }}">세부 정보 보기</a>
+            <a class="secondary" href="/detail/{{ row['id'] }}">📄 PDF로 받기</a>
           </div>
         </div>
       {% endfor %}
