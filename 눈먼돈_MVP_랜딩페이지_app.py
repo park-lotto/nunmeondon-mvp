@@ -52,3 +52,27 @@ def detail(item_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+import pdfkit
+from flask import make_response
+
+@app.route("/pdf/<int:item_id>")
+def download_pdf(item_id):
+    conn = sqlite3.connect("data/data.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM support WHERE rowid = ?", (item_id,))
+    row = cur.fetchone()
+    conn.close()
+
+    if row:
+        row_data = {"사업명": row[0], "지원대상": row[1]}
+        rendered = render_template("detail_pdf.html", row=row_data)
+        pdf = pdfkit.from_string(rendered, False)
+
+        response = make_response(pdf)
+        response.headers['Content-Type'] = 'application/pdf'
+        response.headers['Content-Disposition'] = f'attachment; filename={row[0]}_정책.pdf'
+        return response
+    else:
+        return "❌ PDF 변환 대상이 없습니다.", 404
+
