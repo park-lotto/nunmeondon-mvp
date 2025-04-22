@@ -2,8 +2,12 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>{{ row["사업명"] }} - 상세 정보</title>
+  <title>{{ row["사업명"] }} - 정부지원금 상세 정보 | 눈먼돈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ row['지원대상'] }}를 위한 정부지원 정책. 눈먼돈이 쉽게 정리해드립니다.">
+  <meta property="og:title" content="{{ row['사업명'] }} - 정부지원금 정보">
+  <meta property="og:description" content="{{ row['지원대상'] }} 대상 정책을 지금 확인해보세요. 신청방법, 조건 정리 완료.">
+  <meta property="og:url" content="{{ request.url }}">
   <style>
     body {
       font-family: 'Noto Sans KR', sans-serif;
@@ -65,7 +69,7 @@
     <p><strong>정책 설명:</strong> 여기에 실제 혜택 내용, 지원 금액, 신청 조건 등을 표시할 수 있습니다.</p>
 
     <div class="btn-row">
-      <a class="btn btn-primary" href="#" onclick="alert('📝 신청 페이지는 준비 중입니다.\n곧 연결될 예정입니다.'); return false;">
+      <a class="btn btn-primary" href="#" onclick="alert('📌 이 정책은 복지로 또는 지자체에서 신청 가능합니다.\n정확한 링크는 정책 상세페이지 또는 관련 부처에서 확인해주세요.'); return false;">
         신청하러 가기
       </a>
       <a class="btn" href="#" onclick="copyLink()">📤 공유 링크 복사</a>
